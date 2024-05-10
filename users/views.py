@@ -9,8 +9,8 @@ def register(request):
             form.save()
             # Creiamo l'username concatenando il cognome e il nome
             username = form.cleaned_data.get('username')
-            messages.success(request, f'Account created for {username}!')      
-            return redirect('libreria-home')
+            messages.success(request, f'Your account has been created! Now you can Log In')      
+            return redirect('login')
     else:
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
