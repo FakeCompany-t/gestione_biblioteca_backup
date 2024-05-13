@@ -1,17 +1,8 @@
 from django.shortcuts import render
+from .models import Libro
 
-books = [
-    {
-        'author': 'Dante',
-        'title' : 'Divina commedia'
-    },
-
-
-    ]
 
 def home(request):
-    context = {
-        'books': books,
-        'title':'Home'
-    }
-    return render(request, 'libreria/home.html', context)
+    libri = Libro.objects.all()
+    return render(request, 'libreria/home.html', {'libri':libri})
+
