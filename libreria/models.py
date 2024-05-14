@@ -22,6 +22,7 @@ class LibroAutore(models.Model):
     libro = models.ForeignKey(Libro, on_delete=models.CASCADE)
     autore = models.ForeignKey(Autore, on_delete=models.CASCADE)
     # Altri campi specifici della relazione
+    # porco dio
     
     def __str__(self):
         return f"{self.libro.title} - {self.autore.nome} {self.autore.cognome}"
