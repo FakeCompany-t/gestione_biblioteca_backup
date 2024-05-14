@@ -1,6 +1,7 @@
 from django.db import models
-from django.utils import timezone
-from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator, MaxValueValidator
+from datetime import datetime
+
 
 class Autore(models.Model):
     nome = models.CharField(max_length=100)
@@ -8,12 +9,23 @@ class Autore(models.Model):
     
     def __str__(self):
         return f"{self.nome} {self.cognome}"
+    
+
+class Casa_editrice(models.Model):
+    nome = models.CharField(max_length=100)
+    nazionalita = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.nome}"
+
 
 class Libro(models.Model):
+    copertina = models.ImageField(default='default.jpg')
     title = models.CharField(max_length=100)
     description = models.TextField()
-    data_publication = models.DateField(default=timezone.now)
+    data_publication = models.IntegerField(validators=[MinValueValidator(1000), MaxValueValidator(datetime.now().year)])
     autori = models.ManyToManyField(Autore, through= "LibroAutore")
+    casa_editrice = models.ForeignKey(Casa_editrice , on_delete=models.PROTECT, default=None)
 
     def __str__(self):
         return self.title
@@ -25,3 +37,5 @@ class LibroAutore(models.Model):
     
     def __str__(self):
         return f"{self.libro.title} - {self.autore.nome} {self.autore.cognome}"
+    
+

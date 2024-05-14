@@ -1,4 +1,5 @@
 {% extends "libreria/base.html" %}
+
 {% block content %}
 <head>
     <meta charset="UTF-8">
@@ -13,25 +14,27 @@
     <table id="libri" class="display" style="width:100%">
         <thead>
             <tr>
+                <th>Copertina</th>
                 <th>Titolo</th>
                 <th>Autore</th>
-                <th>Descrizione</th>
-                <th>Data Pubblicazione</th>
+                <th>Casa editrice</th>
+                <th>Anno di pubblicazione</th>
             </tr>
         </thead>
         <tbody>
-            {%for libro in libri%}
+            {% for libro in libri %}
             <tr>
-                <td>{{libro.title}}</td>
+                <td><img src="{{ libro.copertina.url }}" alt="" style="width: 150px; height: 150px;"></td>
+                <td>{{ libro.title }}</td>
                 <td>
-                    {%for autore in libro.autori.all%}
-                        {{autore.cognome}} {{autore.nome}} {%if not forloop.last%},{%endif%}
-                    {%endfor%}
+                    {% for autore in libro.autori.all %}
+                        {{ autore.cognome }} {{ autore.nome }} {% if not forloop.last %},{% endif %}
+                    {% endfor %}
                 </td>
-                <td>{{libro.description}}</td>
-                <td>{{libro.data_publication}}</td>
+                <td>{{ libro.casa_editrice }}</td>
+                <td>{{ libro.data_publication }}</td>
             </tr>
-            {%endfor%}
+            {% endfor %}
         </tbody>
     </table>
 
