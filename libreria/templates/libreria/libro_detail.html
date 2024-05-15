@@ -21,6 +21,17 @@
             <label><strong>Data di pubblicazione:</strong> {{ libro.data_publication}}</label>
             <br>
             <label><strong>Casa editrice:</strong> {{ libro.casa_editrice}}</label>
+            <br>
+            <label><strong>Lingua:</strong> {{ libro.lingua}}</label>
+            <br>
+            <label><strong>Disponibile:</strong> {{ libro.disponibile}}</label>
+            <div class="form-group">
+                <label for="id_tags"><strong>Tag:</strong></label>
+                {% for librotag in libro.librotag_set.all %}
+                    {{ librotag.tag.nome }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </div>
+
         </fieldset>
         <div class="form-group">
             <a class="btn btn-outline-info" href="{% url 'libreria-home' %}">Indietro</a>

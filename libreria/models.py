@@ -39,7 +39,7 @@ class Libro(models.Model):
     casa_editrice = models.ForeignKey(Casa_editrice , on_delete=models.PROTECT, default=None)
     lingua = models.ForeignKey(Lingua , on_delete=models.PROTECT, default=None)
     isbn = models.IntegerField(null=True, default=0)
-    disponibile = models.BooleanField(default=False) 
+    disponibile = models.BooleanField(default=True) 
 
     def __str__(self):
         return self.title

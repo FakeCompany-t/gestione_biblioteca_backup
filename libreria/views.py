@@ -3,7 +3,7 @@ from django.views.generic import CreateView, DetailView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
 from django.urls import reverse_lazy
-from .models import Libro, Autore, LibroAutore
+from .models import Libro, Autore, LibroAutore,Tag,LibroTag
 
 
 def home(request):
@@ -11,7 +11,7 @@ def home(request):
     return render(request, 'libreria/home.html', {'libri': libri})
 class LibroCreateView(CreateView):
     model = Libro
-    fields = ['copertina', 'title', 'description', 'data_publication', 'casa_editrice']
+    fields = ['copertina', 'title', 'description', 'data_publication', 'casa_editrice','lingua','isbn']
 
     def form_valid(self, form):
         # Assegna l'utente corrente come creatore del libro
@@ -24,6 +24,11 @@ class LibroCreateView(CreateView):
         for autore_id in autori_selezionati:
             libro_autore = LibroAutore.objects.create(libro=self.object, autore_id=autore_id)
             libro_autore.save()
+
+        tag_selezionati = self.request.POST.getlist('tags')  
+        for tag_id in tag_selezionati:
+            libro_tag = LibroTag.objects.create(libro=self.object, tag_id=tag_id)
+            libro_tag.save()
         messages.success(self.request, 'Libro creato con successo!')
         return super().form_valid(form)
 
@@ -33,12 +38,13 @@ class LibroCreateView(CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['autori'] = Autore.objects.all()  # Aggiungi gli autori al contesto
+        context['tags'] = Tag.objects.all()  # Aggiungi i tag al contesto
         return context
 class LibroDetailView(DetailView):
     model = Libro
-    fields = ['copertina', 'title', 'description', 'data_publication', 'casa_editrice']
+    fields = ['copertina', 'title', 'description', 'data_publication', 'casa_editrice','lingua','isbn','disponibile']
 
 class LibroDeleteView(DeleteView):
     model = Libro
-    fields = ['copertina', 'title', 'description', 'data_publication', 'casa_editrice']
+    fields = ['copertina', 'title', 'description', 'data_publication', 'casa_editrice','lingua','isbn','disponibile']
     success_url = '/'

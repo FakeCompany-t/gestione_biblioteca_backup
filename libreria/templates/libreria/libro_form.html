@@ -19,6 +19,17 @@
             {{ form.description|as_crispy_field }}
             {{ form.data_publication|as_crispy_field }}
             {{ form.casa_editrice|as_crispy_field }}
+            {{ form.lingua|as_crispy_field }}
+            {{ form.isbn|as_crispy_field }}
+            <div class="form-group">
+                <label for="id_tags">Tag:</label>
+                <select name="tags" id="id_tags" class="form-control" multiple>
+                    {% for tag in tags %}
+                        <option value="{{ tag.pk }}">{{ tag.nome }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
         </fieldset>
         <div class="form-group">
             <button class="btn btn-outline-info" type="submit">Crea</button>
