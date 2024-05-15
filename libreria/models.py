@@ -24,7 +24,6 @@ class Libro(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
     data_publication = models.IntegerField(validators=[MinValueValidator(1000), MaxValueValidator(datetime.now().year)])
-    autori = models.ManyToManyField(Autore, through= "LibroAutore")
     casa_editrice = models.ForeignKey(Casa_editrice , on_delete=models.PROTECT, default=None)
 
     def __str__(self):

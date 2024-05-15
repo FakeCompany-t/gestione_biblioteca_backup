@@ -27,8 +27,8 @@
                 <td><img src="{{ libro.copertina.url }}" alt="" style="width: 150px; height: 150px;"></td>
                 <td>{{ libro.title }}</td>
                 <td>
-                    {% for autore in libro.autori.all %}
-                        {{ autore.cognome }} {{ autore.nome }} {% if not forloop.last %},{% endif %}
+                    {% for libroautore in libro.libroautore_set.all %}
+                        {{ libroautore.autore.nome }} {{ libroautore.autore.cognome }}{% if not forloop.last %}, {% endif %}
                     {% endfor %}
                 </td>
                 <td>{{ libro.casa_editrice }}</td>
