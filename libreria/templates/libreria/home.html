@@ -24,7 +24,7 @@
         <tbody>
             {% for libro in libri %}
             <tr>
-                <td><img src="{{ libro.copertina.url }}" alt="" style="width: 150px; height: 150px;"></td>
+                <td><a href="{% url 'libro-detail' libro.id %}"><img src="{{ libro.copertina.url }}" alt="" style="width: 150px; height: 150px;"></td>
                 <td>{{ libro.title }}</td>
                 <td>
                     {% for libroautore in libro.libroautore_set.all %}
@@ -44,5 +44,8 @@
             $('#libri').DataTable();
         });
     </script>
+    <div style="text-align: center;">
+        <a class="btn btn-outline-success" href="{% url 'libro-create' %}">Aggiungi Libro</a>
+    </div>  
 </body>
 {% endblock content %}
