@@ -10,6 +10,5 @@ urlpatterns = [
     path('libro/<int:pk>/', LibroDetailView.as_view(), name="libro-detail"),
     path('libro/<int:pk>/delete/', LibroDeleteView.as_view(), name="libro-delete"),
 ]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+#if settings.DEBUG:
+#    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

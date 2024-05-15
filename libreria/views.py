@@ -47,4 +47,4 @@ class LibroDetailView(DetailView):
 class LibroDeleteView(DeleteView):
     model = Libro
     fields = ['copertina', 'title', 'description', 'data_publication', 'casa_editrice','lingua','isbn','disponibile']
-    success_url = '/'
+    success_url = '/libreria/'
