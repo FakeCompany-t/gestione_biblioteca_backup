@@ -9,7 +9,7 @@
             {{ form.copertina|as_crispy_field }}
             {{ form.title|as_crispy_field }}
             <div class="form-group">
-                <label for="id_autori">Autori:</label>
+                <label for="id_autori">Autore</label>
                 <select name="autori" id="id_autori" class="form-control">
                     {% for autore in autori %}
                         <option value="{{ autore.pk }}">{{ autore.nome }} {{ autore.cognome }}</option>
