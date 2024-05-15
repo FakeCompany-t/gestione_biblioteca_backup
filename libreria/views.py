@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
 from django.urls import reverse_lazy
 from .models import Libro, Autore, LibroAutore,Tag,LibroTag
+from django.http import JsonResponse
 
 
 def home(request):
@@ -48,3 +49,10 @@ class LibroDeleteView(DeleteView):
     model = Libro
     fields = ['copertina', 'title', 'description', 'data_publication', 'casa_editrice','lingua','isbn','disponibile']
     success_url = '/libreria/'
+
+
+def cerca_autori(request):
+    query = request.GET.get('query', '')
+    autori = Autore.objects.filter(nome__icontains=query) | Autore.objects.filter(cognome__icontains=query)
+    data = [{'pk': autore.pk, 'nome': autore.nome, 'cognome': autore.cognome} for autore in autori]
+    return JsonResponse(data, safe=False)
