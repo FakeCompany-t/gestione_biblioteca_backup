@@ -1,0 +1,28 @@
+{% extends "libreria/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="content-section">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Creazione Libro</legend>
+            {{ form.copertina|as_crispy_field }}
+            {{ form.title|as_crispy_field }}
+            <div class="form-group">
+                <label for="id_autori">Autori:</label>
+                <select name="autori" id="id_autori" class="form-control">
+                    {% for autore in autori %}
+                        <option value="{{ autore.pk }}">{{ autore.nome }} {{ autore.cognome }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            {{ form.description|as_crispy_field }}
+            {{ form.data_publication|as_crispy_field }}
+            {{ form.casa_editrice|as_crispy_field }}
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Crea</button>
+        </div>
+    </form>
+</div>
+{% endblock content %}
