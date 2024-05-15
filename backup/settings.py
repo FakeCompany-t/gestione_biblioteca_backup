@@ -12,11 +12,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import os
 from pathlib import Path
-import environ
+from environ import Env
 
-# Il tuo codice continua qui
-env = environ.Env()
-environ.Env.read_env()
+env = Env()
+Env.read_env()
 
 # Il tuo codice continua qui
 
