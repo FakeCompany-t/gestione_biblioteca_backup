@@ -17,6 +17,7 @@
                 <th>Copertina</th>
                 <th>Titolo</th>
                 <th>Autore</th>
+                <th>Lingua</th>
                 <th>Casa editrice</th>
                 <th>Anno di pubblicazione</th>
             </tr>
@@ -31,6 +32,7 @@
                         {{ libroautore.autore.nome }} {{ libroautore.autore.cognome }}{% if not forloop.last %}, {% endif %}
                     {% endfor %}
                 </td>
+                <td>{{ libro.lingua }}</td>
                 <td>{{ libro.casa_editrice }}</td>
                 <td>{{ libro.data_publication }}</td>
             </tr>
