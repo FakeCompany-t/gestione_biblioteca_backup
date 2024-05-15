@@ -9,6 +9,12 @@ class Lingua(models.Model):
     def __str__(self):
         return f"{self.lang_code}"
 
+class Tag(models.Model):
+    nome = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.nome}"
+
 class Autore(models.Model):
     nome = models.CharField(max_length=100)
     cognome = models.CharField(max_length=100)
@@ -45,5 +51,14 @@ class LibroAutore(models.Model):
     
     def __str__(self):
         return f"{self.libro.title} - {self.autore.nome} {self.autore.cognome}"
+
+
+
+class LibroTag(models.Model):
+    libro = models.ForeignKey(Libro, on_delete=models.CASCADE)
+    tag  = models.ForeignKey(Tag, on_delete=models.CASCADE)
+
     
+    def __str__(self):
+        return f"{self.libro.title} - {self.tag.nome}"
 

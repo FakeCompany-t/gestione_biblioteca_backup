@@ -17,6 +17,7 @@
                 <th>Copertina</th>
                 <th>Titolo</th>
                 <th>Autore</th>
+                <th>Categoria</th>
                 <th>Lingua</th>
                 <th>Casa editrice</th>
                 <th>Anno di pubblicazione</th>
@@ -30,6 +31,11 @@
                 <td>
                     {% for libroautore in libro.libroautore_set.all %}
                         {{ libroautore.autore.nome }} {{ libroautore.autore.cognome }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for librotag in libro.librotag_set.all %}
+                        {{ librotag.tag.nome }} {% if not forloop.last %}, {% endif %}
                     {% endfor %}
                 </td>
                 <td>{{ libro.lingua }}</td>
