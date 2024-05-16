@@ -3,7 +3,7 @@ from django.views.generic import CreateView, DetailView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
 from django.urls import reverse_lazy
-from .models import Libro, Autore, LibroAutore,Tag,LibroTag
+from .models import Libro, Autore, LibroAutore,Tag,LibroTag, Casa_editrice,Lingua
 from django.http import JsonResponse
 
 
@@ -40,6 +40,8 @@ class LibroCreateView(CreateView):
         context = super().get_context_data(**kwargs)
         context['autori'] = Autore.objects.all()  # Aggiungi gli autori al contesto
         context['tags'] = Tag.objects.all()  # Aggiungi i tag al contesto
+        context['case_editrici'] = Casa_editrice.objects.all()
+        context['lingue'] = Lingua.objects.all()
         return context
 class LibroDetailView(DetailView):
     model = Libro

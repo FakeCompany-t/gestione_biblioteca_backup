@@ -44,7 +44,7 @@
                 <select id="id_lingua" class="form-control" name="lingua">
                     <option value="" selected>-- Seleziona lingua --</option>
                     {% for lingua in lingue %}
-                        <option value="{{ lingua.pk }}">{{ lingua.nome }}</option>
+                        <option value="{{ lingua.pk }}">{{ lingua.lang_code }}</option>
                     {% endfor %}
                 </select>
             </div>
