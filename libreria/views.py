@@ -3,7 +3,8 @@ from django.views.generic import CreateView, DetailView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
 from django.urls import reverse_lazy
-from .models import Libro, Autore, LibroAutore,Tag,LibroTag
+from .models import Libro, Autore, LibroAutore,Tag,LibroTag, Casa_editrice,Lingua
+from django.http import JsonResponse
 
 
 def home(request):
@@ -39,6 +40,8 @@ class LibroCreateView(CreateView):
         context = super().get_context_data(**kwargs)
         context['autori'] = Autore.objects.all()  # Aggiungi gli autori al contesto
         context['tags'] = Tag.objects.all()  # Aggiungi i tag al contesto
+        context['case_editrici'] = Casa_editrice.objects.all()
+        context['lingue'] = Lingua.objects.all()
         return context
 class LibroDetailView(DetailView):
     model = Libro
@@ -47,4 +50,11 @@ class LibroDetailView(DetailView):
 class LibroDeleteView(DeleteView):
     model = Libro
     fields = ['copertina', 'title', 'description', 'data_publication', 'casa_editrice','lingua','isbn','disponibile']
-    success_url = '/'
+    success_url = '/libreria/'
+
+
+def cerca_autori(request):
+    query = request.GET.get('query', '')
+    autori = Autore.objects.filter(nome__icontains=query) | Autore.objects.filter(cognome__icontains=query)
+    data = [{'pk': autore.pk, 'nome': autore.nome, 'cognome': autore.cognome} for autore in autori]
+    return JsonResponse(data, safe=False)

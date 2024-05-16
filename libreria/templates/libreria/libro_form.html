@@ -1,5 +1,12 @@
 {% extends "libreria/base.html" %}
-{% load crispy_forms_tags %}
+{% load crispy_forms_tags static %}
+
+{% block extra_head %}
+    <!-- Assicurati che jQuery venga caricato prima di Select2 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+{% endblock %}
 {% block content %}
 <div class="content-section">
     <form method="post" enctype="multipart/form-data">
@@ -10,20 +17,43 @@
             {{ form.title|as_crispy_field }}
             <div class="form-group">
                 <label for="id_autori">Autori:</label>
-                <select name="autori" id="id_autori" class="form-control">
+                <!-- Aggiunta di un'opzione vuota come selezione di default -->
+                <select id="id_autori" class="form-control selezione_autori" name="state">
+                    <option value="" selected>-- Seleziona autore --</option>
                     {% for autore in autori %}
                         <option value="{{ autore.pk }}">{{ autore.nome }} {{ autore.cognome }}</option>
                     {% endfor %}
-                </select>
+                </select>               
             </div>
             {{ form.description|as_crispy_field }}
             {{ form.data_publication|as_crispy_field }}
-            {{ form.casa_editrice|as_crispy_field }}
-            {{ form.lingua|as_crispy_field }}
+            <div class="form-group">
+                <label for="id_casa_editrice">Casa Editrice:</label>
+                <!-- Aggiunta di un'opzione vuota come selezione di default -->
+                <select id="id_casa_editrice" class="form-control" name="casa_editrice">
+                    <option value="" selected>-- Seleziona casa editrice --</option>
+                    {% for casa_editrice in case_editrici %}
+                        <option value="{{ casa_editrice.pk }}">{{ casa_editrice.nome }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <!-- Aggiunta del campo lingua -->
+            <div class="form-group">
+                <label for="id_lingua">Lingua:</label>
+                <!-- Aggiunta di un'opzione vuota come selezione di default -->
+                <select id="id_lingua" class="form-control" name="lingua">
+                    <option value="" selected>-- Seleziona lingua --</option>
+                    {% for lingua in lingue %}
+                        <option value="{{ lingua.pk }}">{{ lingua.lang_code }}</option>
+                    {% endfor %}
+                </select>
+            </div>
             {{ form.isbn|as_crispy_field }}
             <div class="form-group">
                 <label for="id_tags">Tag:</label>
-                <select name="tags" id="id_tags" class="form-control" multiple>
+                <!-- Aggiunta di un'opzione vuota come selezione di default -->
+                <select id="id_tags" class="form-control" multiple>
+                    <option value="" selected>-- Seleziona tag --</option>
                     {% for tag in tags %}
                         <option value="{{ tag.pk }}">{{ tag.nome }}</option>
                     {% endfor %}
@@ -36,4 +66,12 @@
         </div>
     </form>
 </div>
+<script>
+    $(document).ready(function() {
+        // Utilizza l'ID corretto del campo select nella funzione jQuery
+        $('#id_autori, #id_casa_editrice, #id_lingua, #id_tags').select2({
+            placeholder: '-- Seleziona --'
+        });
+    });
+</script>
 {% endblock content %}
