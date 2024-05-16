@@ -1,0 +1,53 @@
+{% extends "libreria/base.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sede Timavo</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Sede Timavo</h2>
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>Informazioni</th>
+            <td>Via Timavo 63, Genova</td>
+          </tr>
+          <tr>
+            <th>CAP</th>
+            <td>16132</td>
+          </tr>
+          <tr>
+            <th>Orari</th>
+            <td>
+              Lunedì-Venerdì: Orari di segreteria<br>
+              Sabato-Domenica: Chiuso
+            </td>
+          </tr>
+          <tr>
+            <th>Email</th>
+            <td><a href="mailto:geis018003@istruzione.it">geis018003@istruzione.it</a></td>
+          </tr>
+          <tr>
+            <th>Telefono</th>
+            <td><a href="tel:010393341">010393341</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="text-center">
+    <a href="https://www.google.com/maps?q=Via+Timavo+63,+Genova" class="btn btn-primary">Naviga su Google Map</a>
+  </div>
+</div>
+
+</body>
+</html>
+{% endblock content %}

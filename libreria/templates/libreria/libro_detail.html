@@ -1,0 +1,42 @@
+{% extends "libreria/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="content-section">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Dettaglio Libro</legend>
+            <td><center><img src="{{ libro.copertina.url }}" alt="" style="width: 150px; height: 150px;"></center></td>
+            <br>
+            <label><strong>Titolo:</strong> {{ libro.title}}</label>
+            <br>
+            <div class="form-group">
+                <label for="id_autori"><strong>Autori:</strong></label>
+                {% for libroautore in libro.libroautore_set.all %}
+                    {{ libroautore.autore.nome }} {{ libroautore.autore.cognome }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </div>
+            <label><strong>Descrizione:</strong> {{ libro.description}}</label>
+            <br>
+            <label><strong>Data di pubblicazione:</strong> {{ libro.data_publication}}</label>
+            <br>
+            <label><strong>Casa editrice:</strong> {{ libro.casa_editrice}}</label>
+            <br>
+            <label><strong>Lingua:</strong> {{ libro.lingua}}</label>
+            <br>
+            <label><strong>Disponibile:</strong> {{ libro.disponibile}}</label>
+            <div class="form-group">
+                <label for="id_tags"><strong>Tag:</strong></label>
+                {% for librotag in libro.librotag_set.all %}
+                    {{ librotag.tag.nome }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </div>
+
+        </fieldset>
+        <div class="form-group">
+            <a class="btn btn-outline-info" href="{% url 'libreria-home' %}">Indietro</a>
+            <a class="btn btn-outline-danger" href="{% url 'libro-delete' libro.id %}">Elimina</a>
+        </div>
+    </form>
+</div>
+{% endblock content %}

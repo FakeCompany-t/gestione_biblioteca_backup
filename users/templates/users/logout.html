@@ -1,0 +1,16 @@
+{% extends "libreria/base.html" %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-8 mx-auto">
+            <div class="card bg-light">
+                <div class="card-header bg-steel text-white h2 text-center">Sei uscito dal tuo account</div>
+                <div class="card-body text-center">
+                    <p class="card-text lead">Per favore, accedi nuovamente per continuare.</p>
+                    <a href="{% url 'login' %}" class="btn btn-outline-success btn-lg">Accedi</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
