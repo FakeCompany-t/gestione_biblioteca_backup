@@ -18,7 +18,7 @@
             <div class="form-group">
                 <label for="id_autori">Autori:</label>
                 <!-- Aggiunta di un'opzione vuota come selezione di default -->
-                <select id="id_autori" class="form-control selezione_autori" name="state">
+                <select id="id_autori" class="form-control selezione_autori" name="autori">
                     <option value="" selected>-- Seleziona autore --</option>
                     {% for autore in autori %}
                         <option value="{{ autore.pk }}">{{ autore.nome }} {{ autore.cognome }}</option>
@@ -52,7 +52,7 @@
             <div class="form-group">
                 <label for="id_tags">Tag:</label>
                 <!-- Aggiunta di un'opzione vuota come selezione di default -->
-                <select id="id_tags" class="form-control" multiple>
+                <select id="id_tags" class="form-control" name="tags" multiple>
                     <option value="" selected>-- Seleziona tag --</option>
                     {% for tag in tags %}
                         <option value="{{ tag.pk }}">{{ tag.nome }}</option>
