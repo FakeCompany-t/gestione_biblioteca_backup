@@ -1,0 +1,201 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #808080;
+}
+
+p {
+    font-family: "Abril Fatface", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: large;
+}
+
+p.textdescription {
+    color: #FFFFFF;
+}
+
+button {
+    background-color: transparent;
+    border: 2px solid #000000;
+    border-radius: 12px;
+    color: #000000;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    margin: auto;
+    min-height: 60px;
+    min-width: 0;
+    text-align: center;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    touch-action: manipulation;
+    width: 15%;
+    will-change: transform;
+    text-transform: uppercase;
+    margin-left: 10px;
+    margin-right: 10px;
+
+}
+
+button:hover {
+    color: #000000;
+    background-color: #FFE001;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+}
+
+a {
+    color: #000000;
+    text-decoration: none;
+}
+
+a:hover {
+    color: inherit;
+}
+
+/* FONT */
+
+.abril-fatface-regular {
+    font-family: "Abril Fatface", serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+h1.abril-fatface-regular {
+    color: #000000;
+}
+
+/* END FONT */
+
+/* NAVBAR */
+.navbar {
+    background: lightgrey;
+}
+
+.navbar-brand img {
+    height: 50px;
+    width: auto;
+    margin-left: 10px;
+}
+
+.navbar-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    /* grassetto ? */
+}
+
+.navbar-nav .nav-item.accedi {
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+.nav-link {
+    color: black;
+    cursor: pointer;
+}
+
+.nav-link.accedi {
+    padding: 10px 20px;
+    border: 1px solid black;
+    border-radius: 6px;
+}
+
+.nav-link.accedi img {
+    width: 20px;
+    height: auto;
+    margin-right: 5px;
+}
+
+.nav-link:hover {
+    color: #EF8A04;
+}
+
+/* END NAVBAR */
+
+/* BIBLIO LOGO */
+
+.ImgLogoLG img {
+    width: 1200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 75px;
+}
+
+/* END BIBLIO LOGO */
+
+/* SECTIONS */
+
+.features {
+    margin: auto;
+    padding: 1em;
+    position: relative;
+}
+
+.feature-item {
+    max-width: 85%;
+    height: auto;
+    position: relative;
+    margin: 0 auto;
+}
+
+.features img {
+    display: block;
+    margin: 0 auto 16px;
+    -webkit-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.feature-content {
+    width: 100%;
+    background-color: #D6D6D6;
+    padding: 15px;
+    box-sizing: border-box;
+    text-align: center;
+    margin-top: -16px;
+}
+
+.feature-title {
+    color: #333;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+/* END SECTIONS */
+
+/* SITE DESCR */
+
+.description {
+    text-align: center;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.description-title {
+    text-transform: uppercase;
+}
+
+.description-box {
+    background-color: #adadad;
+    padding-right: 30px;
+    padding-left: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+/* END SITE DESCR */
+
+
+/*
+#EF8A04     arancio
+#FFE001     giallo
+#84CFEF     azzurro
+#5DAF43     verde
+
+*/
