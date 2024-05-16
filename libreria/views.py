@@ -3,7 +3,7 @@ from django.views.generic import CreateView, DetailView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
 from django.urls import reverse_lazy
-from .models import Libro, Autore, LibroAutore,Tag,LibroTag
+from .models import Libro, Autore, LibroAutore, Tag, LibroTag, Casa_editrice
 
 
 def home(request):
@@ -48,3 +48,17 @@ class LibroDeleteView(DeleteView):
     model = Libro
     fields = ['copertina', 'title', 'description', 'data_publication', 'casa_editrice','lingua','isbn','disponibile']
     success_url = '/'
+
+class AutoreCreateView(CreateView):
+    model = Autore
+    fields = ['nome', 'cognome']
+
+    def get_success_url(self):
+        return reverse_lazy('libreria-home')
+
+class CasaEditriceCreateView(CreateView):
+    model = Casa_editrice
+    fields = ['nome', 'nazionalita']
+
+    def get_success_url(self):
+        return reverse_lazy('libreria-home')
