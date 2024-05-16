@@ -9,7 +9,7 @@ class Profile(models.Model):
         ('bibliotecario', 'Bibliotecario'),
         ('segreteria', 'Segreteria'),
         ('gestore_comodato', 'Gestore Comodato d\'Uso'),
-        ('amministratore', 'amministratore'),
+        ('amministratore', 'Amministratore'),
 
     ]
     ruolo = models.CharField(max_length=20, choices=RUOLO_CHOICES)
