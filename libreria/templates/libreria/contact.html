@@ -1,0 +1,51 @@
+{% extends "libreria/base.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sede Timavo</title>
+  <style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
+</head>
+
+<body>
+
+  <h2>Sede Timavo</h2>
+
+  <table>
+    <tr>
+      <th>Informazioni</th>
+      <th>Dettagli</th>
+    </tr>
+    <tr>
+      <td>Indirizzo</td>
+      <td>Via Timavo 63, Genova</td>
+    </tr>
+    <tr>
+      <td>CAP</td>
+      <td>16132</td>
+    </tr>
+    <tr>
+      <td>Orari</td>
+      <td>
+        Lunedì-Venerdì: Orari di segreteria<br>
+        Sabato-Domenica: Chiuso
+      </td>
+    </tr>
+    <tr>
+{% endblock content %}

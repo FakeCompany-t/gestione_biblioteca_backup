@@ -19,7 +19,3 @@ def register(request):
 def profile(request):
     
     return render(request, 'users/profile.html') 
-
-
-def landing_page(request):
-    return render(request,'users/landing_page.html')

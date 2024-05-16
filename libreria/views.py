@@ -73,3 +73,9 @@ class CasaEditriceCreateView(CreateView):
 
     def get_success_url(self):
         return reverse_lazy('libreria-home')
+    
+def landing_page(request):
+    return render(request,'libreria/landing_page.html')
+
+def contact(request):
+    return render(request,'libreria/contact.html')

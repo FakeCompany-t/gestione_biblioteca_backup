@@ -15,7 +15,7 @@
 
 <body>
     <nav class="navbar navbar-expand-md">
-        <a class="navbar-brand" href="#"><img src="{% static 'libreria/logoGiorgi.png' %}" alt="Logo Giorgi"></a>
+        <a class="navbar-brand"><img src="{% static 'libreria/logoGiorgi.png' %}" alt="Logo Giorgi"></a>
         <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -25,10 +25,10 @@
                     <a class="nav-link" href="{% url 'libreria-home' %}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link" href="https://www.majorana-giorgi.edu.it/la-scuola/">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" href="{% url 'contact' %}">Contact</a>
                 </li>
                 <li class="nav-item accedi">
                     <a class="nav-link accedi" href="{% url 'login' %}">
@@ -38,7 +38,7 @@
         </div>
     </nav>
     <header class="page-header header container-fluid"></header>
-    <a class="ImgLogoLG" href="#"><img src="{% static 'libreria/logoBiblioteca.png' %}" alt="Logo Biblioteca"></a>
+    <a class="ImgLogoLG"><img src="{% static 'libreria/logoBiblioteca.png' %}" alt="Logo Biblioteca"></a>
     <br><br><br>
     <div class="container features">
         <div class="row">
@@ -158,24 +158,8 @@
             <div class="description-title">
                 <h1 class="abril-fatface-regular" id="Galleria">Galleria</h1>
             </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eros elit, pharetra vitae odio a,
-                elementum tincidunt dolor.
-                Morbi tincidunt malesuada scelerisque. Phasellus in nisi vitae dolor porta interdum. Ut iaculis ex
-                justo,
-                eget blandit est suscipit
-                id. Phasellus sit amet neque ac turpis varius auctor. Praesent nec ullamcorper sapien. Donec ante diam,
-                faucibus nec leo nec,
-                malesuada eleifend neque. Curabitur tempor suscipit est. Sed felis leo, malesuada et eleifend eget,
-                semper
-                ut ex. Aenean cursus
-                posuere finibus. Integer volutpat elit sit amet hendrerit sodales. Aliquam orci risus, rhoncus
-                scelerisque
-                feugiat ut, gravida in dolor.
-                Curabitur id lectus id felis efficitur iaculis sed ut metus. Sed tempus dolor odio, nec accumsan nisl
-                posuere non. In hac habitasse platea
-                dictumst. Aliquam ultrices, odio sit amet molestie euismod, lectus eros fringilla tortor, at tincidunt
-                leo
-                turpis eu nunc.</p>
+            <p><img src="{% static 'libreria/biblioteca.jpg' %}" class="img-fluid" width="500px"> <img src="{% static 'libreria/biblioteca2.jpeg' %}" class="img-fluid" width="500px"> 
+            <img src="{% static 'libreria/biblioteca1.jpg' %}" class="img-fluid" width="500px"> <img src="{% static 'libreria/biblioteca3.jpg' %}" class="img-fluid" width="500px"></p>
         </div>
     </div>
 
