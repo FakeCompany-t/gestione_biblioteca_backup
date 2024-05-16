@@ -38,7 +38,10 @@
             <div class="navbar-nav">
             {% if user.is_authenticated %}
               {% if user.profile.ruolo == 'bibliotecario' %}
-              <a class="nav-item nav-link" href="{% url 'libro-create' %}">Aggiungi Libro</a>
+              <a class="nav-item nav-link" href="{% url 'libro-create' %}">Aggiungi Libro |</a>
+              <a class="nav-item nav-link" href="{% url 'autore-create' %}">Aggiungi Autore |</a>
+              <a class="nav-item nav-link" href="{% url 'casa_editrice-create' %}">Aggiungi Casa Editrice |</a>
+
               {%endif%}
             <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
             <form method="post" action="{% url 'logout' %}">
