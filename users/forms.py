@@ -23,3 +23,6 @@ class UserRegisterForm(UserCreationForm):
         user.save()
         profile = Profile.objects.create(user=user, ruolo=self.cleaned_data['ruolo'])  # Salva il ruolo nel profilo
         return user
+
+class ProfilePictureForm(forms.Form):
+    picture = forms.ImageField(label='Seleziona una nuova immagine del profilo')

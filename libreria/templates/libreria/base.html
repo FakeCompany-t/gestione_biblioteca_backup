@@ -10,50 +10,53 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <link rel="stylesheet" type="text/css" href="{% static 'libreria/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'libreria/oldmain.css' %}">
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <link rel="shortcut icon" href="{% static 'libreria/favicon.ico' %}" />
     
     
     {% if title %}
-        <title>Django Blog - {{ title }}</title>
+        <title>Libreria Giorgi - {{ title }}</title>
     {% else %}
-        <title>Django Blog</title>
+        <title>Libreria Giorgi</title>
     {% endif %}
 </head>
-<body>
+
+<body style="padding-top: 70px;">
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
-          <a class="navbar-brand mr-4" href="#"><img src="{% static 'libreria/logobiblio.png' %}" width="250px"></a>
+          <a class="navbar-brand mr-4" href="{% url 'landing' %}"><img src="{% static 'libreria/logobiblio.png' %}" width="250px"></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
               <a class="nav-item nav-link" href="{% url 'libreria-home' %}">Home</a>
-              <a class="nav-item nav-link" href="#">About</a>
+              <a class="nav-item nav-link" href="https://www.majorana-giorgi.edu.it/la-scuola/">About</a>
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
             {% if user.is_authenticated %}
               {% if user.profile.ruolo == 'bibliotecario' %}
-              <a class="nav-item nav-link" href="{% url 'libro-create' %}">Aggiungi Libro |</a>
-              <a class="nav-item nav-link" href="{% url 'autore-create' %}">Aggiungi Autore |</a>
-              <a class="nav-item nav-link" href="{% url 'casa_editrice-create' %}">Aggiungi Casa Editrice |</a>
+              <a class="nav-item nav-link" href="{% url 'libro-create' %}">Aggiungi Libro </a>
+              <a class="nav-item nav-link" href="{% url 'autore-create' %}">Aggiungi Autore </a>
+              <a class="nav-item nav-link" href="{% url 'casa_editrice-create' %}">Aggiungi Casa Editrice &nbsp |</a>
 
               {%endif%}
-            <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+            <a class="nav-item nav-link" href="{% url 'profile' %}">Profilo</a>
             <form method="post" action="{% url 'logout' %}">
               {% csrf_token %}
-              <button type="submit" class="nav-link btn btn-link" >Logout</button>
+              <button type="submit" class="nav-link btn btn-link" >Log Out</button>
             </form>
 
               
 
             {% else %}
-              <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
-              <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+              <a class="nav-item nav-link" href="{% url 'login' %}">Log In</a>
+              <a class="nav-item nav-link" href="{% url 'register' %}">Registrati</a>
             {% endif %}
 
             </div>
