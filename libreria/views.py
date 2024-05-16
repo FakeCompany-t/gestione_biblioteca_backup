@@ -58,3 +58,18 @@ def cerca_autori(request):
     autori = Autore.objects.filter(nome__icontains=query) | Autore.objects.filter(cognome__icontains=query)
     data = [{'pk': autore.pk, 'nome': autore.nome, 'cognome': autore.cognome} for autore in autori]
     return JsonResponse(data, safe=False)
+    success_url = '/'
+
+class AutoreCreateView(CreateView):
+    model = Autore
+    fields = ['nome', 'cognome']
+
+    def get_success_url(self):
+        return reverse_lazy('libreria-home')
+
+class CasaEditriceCreateView(CreateView):
+    model = Casa_editrice
+    fields = ['nome', 'nazionalita']
+
+    def get_success_url(self):
+        return reverse_lazy('libreria-home')
