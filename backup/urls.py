@@ -23,6 +23,7 @@ from django.conf import settings
 
 
 urlpatterns = [
+    path('', users_views.Sophi, name= "landing"),
     path('admin/', admin.site.urls),
     path('register/', users_views.register, name="register"),
     path('profile/', users_views.profile, name='profile'),   

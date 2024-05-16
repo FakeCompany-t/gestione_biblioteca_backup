@@ -19,3 +19,7 @@ def register(request):
 def profile(request):
     
     return render(request, 'users/profile.html') 
+
+
+def Sophi(request):
+    return render(request,'users/Sophinew.html')
