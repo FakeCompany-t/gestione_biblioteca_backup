@@ -22,7 +22,7 @@
         <div class="collapse navbar-collapse" id="main-navigation">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="{% url 'libreria-home' %}">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">About</a>
@@ -31,7 +31,7 @@
                     <a class="nav-link" href="#">Contact</a>
                 </li>
                 <li class="nav-item accedi">
-                    <a class="nav-link accedi" href="#">
+                    <a class="nav-link accedi" href="{% url 'login' %}">
                         <img src="{% static 'libreria/userIcon.png' %}" alt="Icona Accedi">Accedi</a>
                 </li>
             </ul>
@@ -95,8 +95,8 @@
             <div class="description-title">
                 <h1 class="abril-fatface-regular">Pronti a prenotare?</h1>
             </div>
-            <button>Registrati</button>
-            <button>Accedi</button>
+            <a href="{% url 'register' %}" class="styled-button">Registrati</a>
+            <a href="{% url 'login' %}" class="styled-button">Accedi</a>
         </div>
     </div>
     </div>
