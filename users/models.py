@@ -16,4 +16,7 @@ class Profile(models.Model):
     ruolo = models.CharField(max_length=20, choices=RUOLO_CHOICES)
     image = models.ImageField(default='profile_default.png', upload_to='profile_pics')
 
+    def __str__(self):
+        return f"{self.user}"
+
 
