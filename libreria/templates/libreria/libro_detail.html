@@ -37,7 +37,9 @@
             <a class="btn btn-outline-info" href="{% url 'libreria-home' %}">Indietro</a>
             {% if user.is_authenticated %}
                 {% if user.profile.ruolo == 'bibliotecario' %}
+                <a class="btn btn-outline-danger" href="{% url 'libro-update' libro.id %}">Modifica</a>
                 <a class="btn btn-outline-danger" href="{% url 'libro-delete' libro.id %}">Elimina</a>
+                
                 {%endif%}
             {%endif%}
         </div>

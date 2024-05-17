@@ -12,7 +12,7 @@
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Creazione Libro</legend>
+            <legend class="border-bottom mb-4">Libro</legend>
             {{ form.copertina|as_crispy_field }}
             {{ form.title|as_crispy_field }}
             <div class="form-group">
@@ -62,7 +62,7 @@
 
         </fieldset>
         <div class="form-group">
-            <button class="btn btn-outline-info" type="submit">Crea</button>
+            <button class="btn btn-outline-info" type="submit">Salva</button>
         </div>
     </form>
 </div>
