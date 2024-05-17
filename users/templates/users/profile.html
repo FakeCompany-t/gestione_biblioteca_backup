@@ -1,4 +1,5 @@
 {% extends "libreria/base.html" %}
+{% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
     <div class="content-section">
@@ -11,6 +12,14 @@
           <p class="text-secondary">{{ user.email }}</p>
           <p class="text-secondary">{{ user.profile.ruolo }}</p>
         </div>
+        <div class="text-end">
+          <button class="btn btn-outline-secondary">
+            <a href="#" id="change-profile-info">
+              <img src="{% static 'libreria/edit.png' %}" alt="Edit Picture" width="25px">
+            </a>
+          </button>
+        </div>
+        
       </div>
       <!-- FORM HERE -->
     </div>
@@ -40,10 +49,40 @@
 </div>
 
 
+<div class="modal fade" id="changeProfileInfoModal" tabindex="-1" role="dialog" aria-labelledby="changeProfileInfoModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="changeProfileInfoModalLabel">Cambia Foto Profilo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Form for uploading new profile picture -->
+        <form method="post" enctype="multipart/form-data" id="profilePictureForm">
+          {% csrf_token %}
+          {{ u_form|crispy }}
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" type="submit">Carica</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
     <script>
       // JavaScript to handle click event on profile picture
       document.getElementById('change-profile-picture').addEventListener('click', function() {
         $('#changeProfilePictureModal').modal('show'); // Show the modal when the profile picture is clicked
+      });
+    </script>
+    <script>
+      // JavaScript to handle click event on profile picture
+      document.getElementById('change-profile-info').addEventListener('click', function() {
+        $('#changeProfileInfoModal').modal('show'); // Show the modal when the profile picture is clicked
       });
     </script>
 {% endblock content %}
