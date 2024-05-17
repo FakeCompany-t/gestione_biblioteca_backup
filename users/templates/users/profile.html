@@ -38,9 +38,11 @@
         <form method="post" enctype="multipart/form-data" id="profilePictureForm">
           {% csrf_token %}
           {{ p_form|crispy }}
+          <input type="hidden" name="remove_picture" id="remove_picture" value="false">
       </div>
       <div class="modal-footer">
         <button class="btn btn-success" type="submit">Carica</button>
+        <button class="btn btn-danger" type="button" id="removeProfilePictureButton">Rimuovi</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
       </div>
     </form>
@@ -86,5 +88,9 @@
       document.getElementById('change-profile-info').addEventListener('click', function() {
         $('#changeProfileInfoModal').modal('show'); // Show the modal when the profile picture is clicked
       });
+      document.getElementById('removeProfilePictureButton').addEventListener('click', function() {
+      document.getElementById('remove_picture').value = 'true';
+      document.getElementById('profilePictureForm').submit();
+  });
     </script>
 {% endblock content %}

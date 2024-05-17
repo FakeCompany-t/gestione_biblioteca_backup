@@ -23,6 +23,13 @@ def profile(request):
         p_form = ProfileUpdateForm(request.POST,
                                    request.FILES,
                                    instance=request.user.profile)
+
+        if 'remove_picture' in request.POST and request.POST['remove_picture'] == 'true':
+            request.user.profile.image = 'profile_default.png' 
+            request.user.profile.save()
+            messages.success(request, f'Il tuo account è stato correttamente modificato!')
+            return redirect('profile')
+
         if u_form.is_valid():
             u_form.save()
             messages.success(request, f'Il tuo account è stato correttamente modificato!')
