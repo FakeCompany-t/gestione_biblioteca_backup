@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile  # Importa il modello Profile
+from .models import Profile
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
@@ -24,5 +24,15 @@ class UserRegisterForm(UserCreationForm):
         profile = Profile.objects.create(user=user, ruolo=self.cleaned_data['ruolo'])  # Salva il ruolo nel profilo
         return user
 
-class ProfilePictureForm(forms.Form):
-    picture = forms.ImageField(label='Seleziona una nuova immagine del profilo')
+class UserUpdateForm(forms.ModelForm):
+    email = forms.EmailField()
+
+    class Meta:
+        model = User
+        fields = ['username', 'email']
+
+
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['image']
