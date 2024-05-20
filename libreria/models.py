@@ -1,6 +1,9 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from datetime import datetime
+from django.urls import reverse
+
+
 
 class Lingua(models.Model):
     lang_code = models.CharField(max_length=100)
@@ -42,6 +45,9 @@ class Libro(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def get_absolute_url(self):
+        return reverse('post-detail', kwargs={'pk': self.pk})
     
 class LibroAutore(models.Model):
     libro = models.ForeignKey(Libro, on_delete=models.CASCADE)
