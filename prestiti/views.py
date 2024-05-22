@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.views.generic import DetailView
 from .forms import ConfermaPrestito
 from .models import Prestito
 from libreria.models import Libro  # Assicurati di importare il modello Libro dalla libreria
@@ -21,6 +22,8 @@ def prestito(request, libro_id):
                 stato='richiesta'  # Set the initial state
             )
             prestito.save()
+            prestito.stato = 'in corso'
+            prestito.save(update_fields=['stato'])
             messages.success(request, 'La tua richiesta di prestito è stata inviata!')
             return redirect('profile')
     else:
@@ -31,3 +34,8 @@ def prestito(request, libro_id):
         'libro': libro
     }
     return render(request, 'profile.html', context)
+
+class PrestitoDetailView(DetailView):
+    model = Libro
+    fields = ['copertina', 'title', 'description', 'data_publication', 'casa_editrice','lingua','isbn','disponibile']
+    template_name = 'prestiti/prestito_detail.html'

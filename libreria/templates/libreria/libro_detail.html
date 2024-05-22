@@ -34,7 +34,11 @@
         </fieldset>
         <div class="form-group">
             <a class="btn btn-outline-info" href="{% url 'libreria-home' %}">Indietro</a>
-            <button type="button" class="btn btn-outline-success" id="bottone-prestito">Richiedi prestito</button>
+            {% if user.is_authenticated %}
+                {% if user.profile.ruolo != 'bibliotecario' %}
+                    <button type="button" class="btn btn-outline-success" id="bottone-prestito">Richiedi prestito</button>
+                {% endif %}
+            {% endif %}
             {% if user.is_authenticated %}
                 {% if user.profile.ruolo == 'bibliotecario' %}
                     <a class="btn btn-outline-danger" href="{% url 'libro-update' libro.id %}">Modifica</a>
