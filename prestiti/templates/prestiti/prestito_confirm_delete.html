@@ -1,0 +1,13 @@
+<!-- prestiti/templates/prestiti/prestito_confirm_delete.html -->
+{% extends "libreria/base.html" %}
+{% block content %}
+<div class="content-section">
+    <h2>Conferma Eliminazione</h2>
+    <p>Sei sicuro di voler eliminare il prestito di "{{ object.libro }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Elimina</button>
+        <a href="{{ success_url }}" class="btn btn-secondary">Annulla</a>
+    </form>
+</div>
+{% endblock content %}

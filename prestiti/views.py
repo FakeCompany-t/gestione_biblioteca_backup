@@ -5,6 +5,7 @@ from .models import Prestito
 from libreria.models import Libro  # Assicurati di importare il modello Libro dalla libreria
 from django.contrib.auth.decorators import login_required
 from datetime import datetime, timedelta
+from django.views.generic import DeleteView 
 
 @login_required
 def prestito(request, libro_id):
@@ -31,3 +32,8 @@ def prestito(request, libro_id):
         'libro': libro
     }
     return render(request, 'profile.html', context)
+
+class PrestitoDeleteView(DeleteView):
+    model = Prestito
+    fields = ['libro', 'user', 'data_inzio', 'data_fine', 'stato']
+    success_url = '/profile/'

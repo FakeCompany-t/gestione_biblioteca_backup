@@ -95,6 +95,7 @@
                 <td>{{ prestito.data_inzio }}</td>
                 <td>{{ prestito.data_fine }}</td>
                 <td>{{ prestito.stato }}</td>
+                <td>  <a class="btn btn-outline-danger"  href="{% url 'prestito_delete' prestito.id %}" >Elimina</a> </td>
             </tr>
             {% endfor %}
         </tbody>
