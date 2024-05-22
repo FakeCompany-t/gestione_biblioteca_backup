@@ -75,6 +75,29 @@
   </div>
 </div>
 
+<div class="content-section">
+  <h2>Prestiti</h2>
+  <table class="table">
+      <thead>
+          <tr>
+              <th>Titolo del Libro</th>
+              <th>Data Inizio</th>
+              <th>Data Fine</th>
+              <th>Stato</th>
+          </tr>
+      </thead>
+      <tbody>
+          {% for prestito in prestiti %}
+          <tr>
+              <td>{{ prestito.libro }}</td>
+              <td>{{ prestito.data_inzio }}</td>
+              <td>{{ prestito.data_fine }}</td>
+              <td>{{ prestito.stato }}</td>
+          </tr>
+          {% endfor %}
+      </tbody>
+  </table>
+</div>
 
 
     <script>

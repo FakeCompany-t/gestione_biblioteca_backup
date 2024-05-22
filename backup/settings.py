@@ -40,6 +40,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'prestiti.apps.PrestitiConfig',
     'django.contrib.auth',
     'users.apps.UsersConfig',
     'libreria.apps.LibreriaConfig',

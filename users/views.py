@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from prestiti.models import Prestito
 
 def register(request):
     if request.method == 'POST':
@@ -42,10 +43,14 @@ def profile(request):
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
-
+    
+    #tabella prestiti
+    prestiti = Prestito.objects.filter(user=request.user)
     context = {
         'u_form': u_form,
-        'p_form': p_form
+        'p_form': p_form,
+        'prestiti': prestiti
     }
 
     return render(request, 'users/profile.html', context)
+

@@ -4,6 +4,7 @@ from django.conf.urls.static import static
 from .views import LibroCreateView, LibroDetailView, LibroDeleteView, AutoreCreateView, CasaEditriceCreateView , LibroUpdateView
 from . import views
 from .views import cerca_autori
+from prestiti.views import prestito 
 
 urlpatterns = [
     path('', views.home, name="libreria-home"),
@@ -11,6 +12,7 @@ urlpatterns = [
     path('libro/<int:pk>/', LibroDetailView.as_view(), name="libro-detail"),
     path('libro/<int:pk>/delete/', LibroDeleteView.as_view(), name="libro-delete"),
     path('libro/<int:pk>/update/', LibroUpdateView.as_view(), name='libro-update'),
+    path('prestito/<int:libro_id>/', prestito, name='prestito'),
     path('api/cerca_autori', cerca_autori, name='cerca_autori'),
     path('autore/new/', AutoreCreateView.as_view(), name="autore-create"),
     path('casa_editrice/new/', CasaEditriceCreateView.as_view(), name="casa_editrice-create"),

@@ -6,9 +6,9 @@
         {% csrf_token %}
         <fieldset class="form-group">
             <legend class="border-bottom mb-4">Dettaglio Libro</legend>
-            <td><center><img src="{{ libro.copertina.url }}" alt="" style="width: 150px; height: 150px;"></center></td>
+            <center><img src="{{ libro.copertina.url }}" alt="" style="width: 150px; height: 150px;"></center>
             <br>
-            <label><strong>Titolo:</strong> {{ libro.title}}</label>
+            <label><strong>Titolo:</strong> {{ libro.title }}</label>
             <br>
             <div class="form-group">
                 <label for="id_autori"><strong>Autori:</strong></label>
@@ -16,33 +16,74 @@
                     {{ libroautore.autore.nome }} {{ libroautore.autore.cognome }}{% if not forloop.last %}, {% endif %}
                 {% endfor %}
             </div>
-            <label><strong>Descrizione:</strong> {{ libro.description}}</label>
+            <label><strong>Descrizione:</strong> {{ libro.description }}</label>
             <br>
-            <label><strong>Data di pubblicazione:</strong> {{ libro.data_publication}}</label>
+            <label><strong>Data di pubblicazione:</strong> {{ libro.data_publication }}</label>
             <br>
-            <label><strong>Casa editrice:</strong> {{ libro.casa_editrice}}</label>
+            <label><strong>Casa editrice:</strong> {{ libro.casa_editrice }}</label>
             <br>
-            <label><strong>Lingua:</strong> {{ libro.lingua}}</label>
+            <label><strong>Lingua:</strong> {{ libro.lingua }}</label>
             <br>
-            <label><strong>Disponibile:</strong> {{ libro.disponibile}}</label>
+            <label><strong>Disponibile:</strong> {{ libro.disponibile }}</label>
             <div class="form-group">
                 <label for="id_tags"><strong>Tag:</strong></label>
                 {% for librotag in libro.librotag_set.all %}
                     {{ librotag.tag.nome }}{% if not forloop.last %}, {% endif %}
                 {% endfor %}
             </div>
-
         </fieldset>
         <div class="form-group">
             <a class="btn btn-outline-info" href="{% url 'libreria-home' %}">Indietro</a>
+            <button type="button" class="btn btn-outline-success" id="bottone-prestito">Richiedi prestito</button>
             {% if user.is_authenticated %}
                 {% if user.profile.ruolo == 'bibliotecario' %}
-                <a class="btn btn-outline-danger" href="{% url 'libro-update' libro.id %}">Modifica</a>
-                <a class="btn btn-outline-danger" href="{% url 'libro-delete' libro.id %}">Elimina</a>
-                
-                {%endif%}
-            {%endif%}
+                    <a class="btn btn-outline-danger" href="{% url 'libro-update' libro.id %}">Modifica</a>
+                    <a class="btn btn-outline-danger" href="{% url 'libro-delete' libro.id %}">Elimina</a>
+                {% endif %}
+            {% endif %}
         </div>
     </form>
+
+    <div class="modal fade" id="prestito" tabindex="-1" role="dialog" aria-labelledby="prestitoLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="prestitoLabel">Conferma prestito</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" id="ConfermaPrestitoForm" action="{% url 'prestito' libro.id %}">
+                        {% csrf_token %}
+                        <label for="id_data_inzio">Data inizio:</label>
+                        <input type="date" id="id_data_inzio" name="data_inzio" value="{{ prestito_form.fields.data_inzio.initial }}" class="form-control" readonly>
+                        <label for="id_data_fine">Data fine:</label>
+                        <input type="date" id="id_data_fine" name="data_fine" value="{{ prestito_form.fields.data_fine.initial }}" class="form-control" readonly>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" type="submit">Conferma</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+                </div>
+                    </form>
+            </div>
+        </div>
+    </div>    
 </div>
+
+<script>
+    document.getElementById('bottone-prestito').addEventListener('click', function() {
+        $('#prestito').modal('show');
+    });
+
+    // Otteniamo la data odierna
+    var today = new Date().toISOString().split('T')[0];
+    document.getElementById("id_data_inzio").value = today;
+
+    // Calcoliamo la data di fine come data di inizio (oggi) più un mese
+    var endDate = new Date(today);
+    endDate.setMonth(endDate.getMonth() + 1);
+    var endDateString = endDate.toISOString().split('T')[0];
+    document.getElementById("id_data_fine").value = endDateString;
+</script>
 {% endblock content %}
