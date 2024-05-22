@@ -21,7 +21,7 @@ def prestito(request, libro_id):
                 stato='richiesta'  # Set the initial state
             )
             prestito.save()
-            messages.success(request, 'Il tuo prestito è stato confermato!')
+            messages.success(request, 'La tua richiesta di prestito è stata inviata!')
             return redirect('profile')
     else:
         prestito_form = ConfermaPrestito()

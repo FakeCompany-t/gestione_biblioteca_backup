@@ -27,25 +27,35 @@
         <tbody>
             {% for libro in libri %}
             <tr>
-                <td><a href="{% url 'libro-detail' libro.id %}"><img src="{{ libro.copertina.url }}" alt="" style="width: 150px; height: 150px;"></td>
-                <td>{{ libro.title }}</td>
-                <td>
+                <td class="text-center">
+                    <a href="{% url 'libro-detail' libro.id %}">
+                        <img src="{{ libro.copertina.url }}" alt="" style="width: 150px; height: 150px;">
+                    </a>
+                </td>
+                <td class="text-center">{{ libro.title }}</td>
+                <td class="text-center">
                     {% for libroautore in libro.libroautore_set.all %}
                         {{ libroautore.autore.nome }} {{ libroautore.autore.cognome }}{% if not forloop.last %}, {% endif %}
                     {% endfor %}
                 </td>
-                <td>
+                <td class="text-center">
                     {% for librotag in libro.librotag_set.all %}
-                        {{ librotag.tag.nome }} {% if not forloop.last %}, {% endif %}
+                        {{ librotag.tag.nome }}{% if not forloop.last %}, {% endif %}
                     {% endfor %}
                 </td>
-                <td>{{ libro.lingua }}</td>
-                <td>{{ libro.casa_editrice }}</td>
-                <td>{{ libro.data_publication }}</td>
-                <td>{{ libro.disponibile }}</td>
+                <td class="text-center">{{ libro.lingua }}</td>
+                <td class="text-center">{{ libro.casa_editrice }}</td>
+                <td class="text-center">{{ libro.data_publication }}</td>
+                <td class="text-center">
+                    {% if libro.disponibile %}
+                        Si
+                    {% else %}
+                        No
+                    {% endif %}
+                </td>
             </tr>
             {% endfor %}
-        </tbody>
+        </tbody>        
     </table>
 
     <script>
