@@ -36,6 +36,5 @@ def prestito(request, libro_id):
     return render(request, 'profile.html', context)
 
 class PrestitoDetailView(DetailView):
-    model = Libro
-    fields = ['copertina', 'title', 'description', 'data_publication', 'casa_editrice','lingua','isbn','disponibile']
+    model = Prestito
     template_name = 'prestiti/prestito_detail.html'
