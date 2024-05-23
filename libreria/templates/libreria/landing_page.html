@@ -65,7 +65,7 @@
     {% endif %}
     </nav>
     <header class="page-header header container-fluid"></header>
-    <a class="ImgLogoLG"><img src="{% static 'libreria/logoBiblioteca.png' %}" alt="Logo Biblioteca"></a>
+    <a class="ImgLogoLG"><img class="img-fluid"src="{% static 'libreria/logoBiblioteca.png' %}" alt="Logo Biblioteca"></a>
     <br><br><br>
     <div class="container features">
         <div class="row">
@@ -167,10 +167,15 @@
             <div class="description-title">
                 <h1 class="abril-fatface-regular" id="Galleria">Galleria</h1>
             </div>
-            <p><img src="{% static 'libreria/biblioteca5.jpg' %}" class="img-fluid" width="500px"> <img src="{% static 'libreria/biblioteca7.jpg' %}" class="img-fluid" width="500px"> 
-            <img src="{% static 'libreria/biblioteca6.jpg' %}" class="img-fluid" width="500px"> <img src="{% static 'libreria/biblioteca4.jpg' %}" class="img-fluid" width="500px"></p>
+            <p>
+                <img src="{% static 'libreria/biblioteca5.jpg' %}" class="img-fluid gallery-image">
+                <img src="{% static 'libreria/biblioteca7.jpg' %}" class="img-fluid gallery-image">
+                <img src="{% static 'libreria/biblioteca6.jpg' %}" class="img-fluid gallery-image">
+                <img src="{% static 'libreria/biblioteca4.jpg' %}" class="img-fluid gallery-image">
+            </p>
         </div>
     </div>
+    
 
 </body>
 
