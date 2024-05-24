@@ -84,7 +84,10 @@ h1.abril-fatface-regular {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    /* grassetto ? */
+}
+
+.navbar-nav .nav-item {
+    margin: 5px;
 }
 
 .navbar-nav .nav-item.accedi {
@@ -222,6 +225,22 @@ h1.abril-fatface-regular {
 }
 
 /* END SITE DESCR */
+
+/* GALLERY */
+
+div.scroll-container {
+    background-color: #adadad;
+    overflow: auto;
+    white-space: nowrap;
+    padding: 10px;
+}
+
+div.scroll-container img {
+    padding: 10px;
+}
+
+
+/* END GALLERY */
 
 
 /*
