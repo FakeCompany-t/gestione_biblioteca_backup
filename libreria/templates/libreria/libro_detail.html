@@ -35,7 +35,7 @@
         <div class="form-group">
             <a class="btn btn-outline-info" href="{% url 'libreria-home' %}">Indietro</a>
             {% if user.is_authenticated %}
-                {% if user.profile.ruolo != 'bibliotecario' %}
+                {% if user.profile.ruolo != 'bibliotecario' and libro.disponibile %}
                     <button type="button" class="btn btn-outline-success" id="bottone-prestito">Richiedi prestito</button>
                 {% endif %}
             {% endif %}

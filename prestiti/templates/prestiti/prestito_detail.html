@@ -5,32 +5,30 @@
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Dettaglio Libro</legend>
-            <center><img src="{{ libro.copertina.url }}" alt="" style="width: 150px; height: 150px;"></center>
+            <legend class="border-bottom mb-4">Dettaglio Prestito</legend>
+            <center><img src="{{ prestito.libro.copertina.url }}" alt="" style="width: 150px; height: 150px;"></center>
             <br>
-            <label><strong>Titolo:</strong> {{ libro.title }}</label>
+            <label><strong>Titolo:</strong> {{ prestito.libro.title }}</label>
             <br>
             <div class="form-group">
                 <label for="id_autori"><strong>Autori:</strong></label>
-                {% for libroautore in libro.libroautore_set.all %}
+                {% for libroautore in prestito.libro.libroautore_set.all %}
                     {{ libroautore.autore.nome }} {{ libroautore.autore.cognome }}{% if not forloop.last %}, {% endif %}
                 {% endfor %}
             </div>
-            <label><strong>Descrizione:</strong> {{ libro.description }}</label>
-            <br>
-            <label><strong>Data di pubblicazione:</strong> {{ libro.data_publication }}</label>
-            <br>
-            <label><strong>Casa editrice:</strong> {{ libro.casa_editrice }}</label>
-            <br>
-            <label><strong>Lingua:</strong> {{ libro.lingua }}</label>
-            <br>
-            <label><strong>Disponibile:</strong> {{ libro.disponibile }}</label>
+            <label><strong>Disponibile:</strong> {{ prestito.libro.disponibile }}</label>
             <div class="form-group">
                 <label for="id_tags"><strong>Tag:</strong></label>
-                {% for librotag in libro.librotag_set.all %}
+                {% for librotag in prestito.libro.librotag_set.all %}
                     {{ librotag.tag.nome }}{% if not forloop.last %}, {% endif %}
                 {% endfor %}
             </div>
+            <label><strong>Utente: </strong> {{ prestito.user }}</label>
+            <br>
+            <label><strong>Data Inizio: </strong>{{ prestito.data_inzio }}</label>
+            <label><strong>Data Fine: </strong>{{ prestito.data_fine }}</label>
+            <br>
+            <label><strong>Stato: </strong>{{ prestito.stato }}</label>
         </fieldset>
         <div class="form-group">
             <a class="btn btn-outline-info" href="{% url 'libreria-home' %}">Indietro</a>

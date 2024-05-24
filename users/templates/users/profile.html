@@ -100,7 +100,7 @@
                 <td>{{ prestito.libro }}</td>
                 <td>{{ prestito.data_inzio }}</td>
                 <td>{{ prestito.data_fine }}</td>
-                <td><a href="#">{{ prestito.stato }}</a></td>
+                <td><a href="{% url 'prestito-detail' prestito.id %}">{{ prestito.stato }}</a></td>
             </tr>
             {% endfor %}
         </tbody>
