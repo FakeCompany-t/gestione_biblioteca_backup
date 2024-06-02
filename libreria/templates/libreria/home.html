@@ -1,56 +1,64 @@
 {% extends "libreria/base.html" %}
 
 {% block content %}
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Includi le librerie DataTables -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 </head>
+
 <body>
-    <h2>Libreria</h2>
-    <table id="libri" class="display" style="width:100%">
-        <thead>
-            <tr>
-                <th>Copertina</th>
-                <th>Titolo</th>
-                <th>Autore</th>
-                <th>Categoria</th>
-                <th>Lingua</th>
-                <th>Casa editrice</th>
-                <th>Anno di pubblicazione</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for libro in libri %}
-            <tr>
-                <td><a href="{% url 'libro-detail' libro.id %}"><img src="{{ libro.copertina.url }}" alt="" style="width: 150px; height: 150px;"></td>
-                <td>{{ libro.title }}</td>
-                <td>
-                    {% for libroautore in libro.libroautore_set.all %}
-                        {{ libroautore.autore.nome }} {{ libroautore.autore.cognome }}{% if not forloop.last %}, {% endif %}
-                    {% endfor %}
-                </td>
-                <td>
-                    {% for librotag in libro.librotag_set.all %}
-                        {{ librotag.tag.nome }} {% if not forloop.last %}, {% endif %}
-                    {% endfor %}
-                </td>
-                <td>{{ libro.lingua }}</td>
-                <td>{{ libro.casa_editrice }}</td>
-                <td>{{ libro.data_publication }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
+    <br>
+    <h2 class="abril-fatface-regular" style="color: #FFFFFF;">Libreria</h2>
+    <br>
+    <div class="description-box">
+        <table id="libri" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Copertina</th>
+                    <th>Titolo</th>
+                    <th>Autore</th>
+                    <th>Categoria</th>
+                    <th>Lingua</th>
+                    <th>Casa editrice</th>
+                    <th>Anno di pubblicazione</th>
+                </tr>
+            </thead>
+    </div>
+    <tbody>
+        {% for libro in libri %}
+        <tr>
+            <td><a href="{% url 'libro-detail' libro.id %}"><img src="{{ libro.copertina.url }}" alt=""
+                        style="width: 150px; height: 150px;"></td>
+            <td>{{ libro.title }}</td>
+            <td>
+                {% for libroautore in libro.libroautore_set.all %}
+                {{ libroautore.autore.nome }} {{ libroautore.autore.cognome }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </td>
+            <td>
+                {% for librotag in libro.librotag_set.all %}
+                {{ librotag.tag.nome }} {% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </td>
+            <td>{{ libro.lingua }}</td>
+            <td>{{ libro.casa_editrice }}</td>
+            <td>{{ libro.data_publication }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
     </table>
 
     <script>
         // Inizializza DataTables sulla tabella
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#libri').DataTable();
         });
-    </script> 
+    </script>
 </body>
 {% endblock content %}
